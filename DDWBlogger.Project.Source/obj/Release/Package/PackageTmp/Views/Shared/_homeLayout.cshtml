@@ -1,0 +1,38 @@
+﻿@{
+    DDWBlogger.Project.Source.ViewModel.HomePageModel HomePageModel = new DDWBlogger.Project.Source.ViewModel.HomePageModel();
+    using (var context = new DDWBlogger.Project.Source.App_Data.DBContext())
+    {
+        DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
+        HomePageModel = FEHomePage.GetHomePageDetail();
+    }
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@System.Configuration.ConfigurationSettings.AppSettings["AppName"].ToString() : @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../content/frontend/css/reset.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../content/frontend/css/nivo-slider.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../content/frontend/css/prettyPhoto.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../content/frontend/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../content/frontend/css/jquery.tweet.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../content/frontend/css/responsive.css" type="text/css" media="all">
+    <link rel="shortcut icon" href="../../content/frontend/images/favicon.html">
+    <link rel="apple-touch-icon" href="../../content/frontend/images/apple-touch-icon.html">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../content/frontend/images/apple-touch-icon-72x72.html">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../content/frontend/images/apple-touch-icon-114x114.html">
+    @System.Web.Optimization.Scripts.Render("~/bundles/javascriptfiles")
+</head>
+<body class="home-page">
+    <div class="pattern">
+        @{Html.RenderPartial("_header", HomePageModel);}
+        <div class="separator"></div>
+        <div class="main-body">
+            @RenderBody()
+        </div><!--main-body-->
+        @{Html.RenderPartial("_footer", HomePageModel);}
+        <a id="scroll-to-top" href="#top">Back to top</a>
+    </div>
+</body>
+</html>

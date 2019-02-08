@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+
+    DDWBlogger.Project.Source.ViewModel.HomePageIndexModel HomePageIndexModel = new DDWBlogger.Project.Source.ViewModel.HomePageIndexModel();
+    using (var context = new DDWBlogger.Project.Source.App_Data.DBContext())
+    {
+        DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
+        HomePageIndexModel = FEHomePage.GetIndexPageDetail();
+    }
+}
+<div class="wrapper clearfix">
+    <div class="primary">
+        @{
+            Html.RenderPartial("_homeslider", HomePageIndexModel.Slider);
+            Html.RenderPartial("_homearticletabs", HomePageIndexModel);
+        }
+    </div>
+    <div class="secondary clearfix">
+        @{ Html.RenderPartial("_hometopsidebar", HomePageIndexModel.ArticleAndFeatures);}
+        @{ Html.RenderPartial("_homesidebar", HomePageIndexModel);}       
+    </div>
+</div>

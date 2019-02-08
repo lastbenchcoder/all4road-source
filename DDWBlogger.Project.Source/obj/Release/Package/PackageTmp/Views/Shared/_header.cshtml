@@ -1,0 +1,85 @@
+﻿@model DDWBlogger.Project.Source.ViewModel.HomePageModel
+<header id="header">
+    <div class="wrapper clearfix">
+        <nav id="top-nav">
+            <ul id="top-menu" class="clearfix">
+                <li class="current-menu-item">
+                    <a href="/">Home</a>
+                </li>
+                @if (Model.HomePage != null)
+                {
+                    if (Model.HomePage.DisplayTopMenuBar == 1)
+                    {
+                        foreach (var item in Model.Category)
+                        {
+                            <li>
+                                <a href="/home/articlesbycategory?id=@item.CategoryId">@item.Title</a>
+                                <ul>
+                                    @foreach (var item1 in item.SubCategory)
+                                    {
+                                        <li><a href="/home/articlesbysubcategory?id=@item1.SubCategoryId">@item1.Title</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                }
+                <li><a href="news.html">About Us</a></li>
+                <li><a href="news.html">Contact Us</a></li>
+            </ul>
+        </nav><!--end:top-nav-->
+    </div><!--wrapper-->
+</header>
+<section class="branding">
+    <div class="wrapper clearfix">
+        @if (Model.HomePage != null)
+        {
+            if (Model.HomePage.Logo != "")
+            {
+                <a id="logo-image" href="/"><img src="../../@Model.HomePage.Logo" alt="logo"></a>
+            }
+            else
+            {
+                <a id="logo-image" href="/"><img src="../../content/logo.png" alt="logo"></a>
+            }
+        }
+        else
+        {
+            <a id="logo-image" href="/"><img src="../../content/logo.png" alt="logo"></a>
+        }
+        @if (Model.HomePage != null)
+        {
+            if (Model.HomePage.Display_468_60 == 1)
+            {
+                if (Model.Ads.Count > 0)
+                {
+                    foreach (var item in Model.Ads)
+                    {
+                        if (item.AddSize.Title == "468 x 60")
+                        {
+                            if (item.Type == DDWBlogger.Project.Source.Enums.eAds.Banner.ToString())
+                            {
+                                <a href="@item.RedirectUrl" id="top-banner">
+                                    <img class="responsive-img" src="../../@item.Banner" alt="banner">
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.Raw(@item.Banner)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </div><!--wrapper-->
+    <div class="search clearfix">
+        <a title="Search" class="search-icon" href="#">Search</a>
+        <div class="search-box clearfix">
+            <form action="#" class="search-form clearfix" method="get">
+                <input type="text" onBlur="if(this.value=='')this.value=this.defaultValue;" onFocus="if(this.value==this.defaultValue)this.value='';" value="Search" name="s" class="search-text">
+                <input type="submit" value="Submit" name="submit" class="search-submit">
+            </form><!-- search-form -->
+        </div><!--end:search-box-->
+    </div><!--search-icon-->
+</section><!--branding-->

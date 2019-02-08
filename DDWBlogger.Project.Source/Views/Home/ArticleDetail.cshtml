@@ -1,0 +1,260 @@
+﻿@{
+    int id = Convert.ToInt32(ViewBag.Id);
+    DDWBlogger.Project.Source.ViewModel.ArticleDetailPageModel ArticleDetailPageModel = new DDWBlogger.Project.Source.ViewModel.ArticleDetailPageModel();
+    using (var context = new DDWBlogger.Project.Source.App_Data.DBContext())
+    {
+        DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
+        ArticleDetailPageModel = FEHomePage.GetArticleDetailPageDetail(id);
+    }
+
+    ViewBag.Title = ArticleDetailPageModel.Article.Title;
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="wrapper clearfix">
+    <div class="left-col">
+        <div class="breadcrumb clearfix">
+            <span>You are here: </span>
+            <a href="#">Home</a>&nbsp;&raquo;&nbsp;<a href="#" class="current-page">@ArticleDetailPageModel.Article.SubCategory.Title</a>
+        </div><!--end:breadcrumb-->
+        <section class="entry-box clearfix">
+            <h1 class="entry-title">@ArticleDetailPageModel.Article.Title</h1>
+            <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="/home/articlesbysubcategory?id=@ArticleDetailPageModel.Article.SubCategoryId">@ArticleDetailPageModel.Article.SubCategory.Title</a>
+            <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@ArticleDetailPageModel.Article.DateCreated.ToString("D")</span>
+            <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="#">@ArticleDetailPageModel.Article.Administrator.FirstName</a>
+            <img src="../../@ArticleDetailPageModel.Article.FeaturedBanner" width="100%" height="383" />
+            @Html.Raw(ArticleDetailPageModel.Article.Description)
+        </section>
+        <!--end:entry-box-->
+        @if (ArticleDetailPageModel.RelatedArticle != null && ArticleDetailPageModel.RelatedArticle.Count > 0)
+        {
+            <div id="related-article">
+                <section class="feature-widget">
+                    <h6 class="feature-title">Related Articles</h6>
+                    <div class="b-carousel-wrapper">
+                        <div class="list-carousel responsive">
+                            <ul class="related-news clearfix">
+                                @foreach (var item in ArticleDetailPageModel.RelatedArticle)
+                                {
+                                    <li>
+                                        <article class="feature-item clearfix">
+                                            <div class="video-thumb">
+                                                <img class="responsive-img" src="../../@item.FeaturedBanner" alt="" width="255" height="100%" />
+                                            </div><!--video-thumb-->
+                                            <div class="entry-content">
+                                                <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="#">@item.SubCategory.Title</a>
+                                                <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@item.DateCreated.ToString("D")</span>
+                                                <h4 class="entry-title"><a href="/home/articledetail?id=@item.ArticleId">@item.Title</a></h4>
+                                                <p>@Html.Raw(item.Description.Substring(0, 50))<span>...</span></p>
+                                            </div><!--end:entry_content-->
+                                        </article>
+                                    </li>
+                                }
+                            </ul><!--end:feature-news-->
+                            <div class="clear"></div>
+                            <div class="feature-nav">
+                                <a id="prev-1" class="prev" href="#">Previous</a>
+                                <a id="next-1" class="next" href="#">Next</a>
+                            </div><!--feature-nav-->
+                        </div><!--end:list-carousel-->
+                    </div><!--carousel-wrapper-->
+                </section><!--end:feature-widget-->
+            </div>
+        }
+        <!--related-article-->
+        <section class="about-author">
+            <h5>About author</h5>
+            <img class="border-box responsive-img" src="../../@ArticleDetailPageModel.Article.Administrator.Banner" alt="" width="100" />
+            <div class="entry-content clearfix">
+                <strong class="author-name">@ArticleDetailPageModel.Article.Administrator.FirstName</strong>
+                <a href="#">http://kopatheme.com</a>
+                <p>@ArticleDetailPageModel.Article.Administrator.Description</p>
+            </div>
+        </section><!--end:about-author-->
+
+        <div id="comments">
+            <h5>@ArticleDetailPageModel.Article.ReviewComment.Where(m=>m.StatusId == Convert.ToInt32(DDWBlogger.Project.Source.Enums.eStatus.Active)).ToList().Count comments in this article</h5>
+            <ol class="comments-list clearfix">
+                @foreach (var item in ArticleDetailPageModel.Article.ReviewComment)
+                {
+                    if (item.StatusId == Convert.ToInt32(DDWBlogger.Project.Source.Enums.eStatus.Active) || item.IpAddress == DDWBlogger.Project.Source.Helper.IpAddress.GetLocalIPAddress())
+                    {
+                        <li class="comment clearfix">
+                            <article class="comment-wrap clearfix">
+                                <img class="responsive-img" src="../../Content/noimage.png" alt="" width="80px">
+                                <div class="comment-body">
+                                    <div class="comment-meta">
+                                        <span class="author">@item.FullName</span>
+                                        <span class="date">@item.DateCreated.ToString("D")</span>
+                                    </div><!-- end:comment-meta -->
+                                    <p>@item.CommentDescription</p>
+                                    <a href="#" class="comment-reply-link">Reply</a>
+                                    <a href="#" class="comment-edit-link">Delete</a>
+                                </div><!-- end:comment-body -->
+                            </article>
+                            @if (item.ReplyReviewComment.Count > 0)
+                            {
+                                <ul class="children">
+                                    @foreach (var item123 in item.ReplyReviewComment)
+                                    {
+                                        <li class="comment clearfix">
+                                            <article class="comment-wrap clearfix">
+                                                <img class="responsive-img" src="../../Content/noimage.png" alt="" width="80px">
+                                                <div class="comment-body">
+                                                    <div class="comment-meta">
+                                                        <span class="author">@item123.FullName</span>
+                                                        <span class="date">@item123.DateCreated.ToString("D")</span>
+                                                    </div><!-- end:comment-meta -->
+                                                    <p>@item123.CommentDescription</p>
+                                                </div><!-- end:comment-body -->
+                                            </article>
+                                        </li>
+                                    }
+                                </ul><!--end:children-->
+                            }
+                        </li>
+                    }
+                }
+            </ol><!--end:comments-list-->
+            <div class="clear"></div>
+        </div><!--end:comments-->
+        <div id="respond">
+            <h3>Leave a Reply</h3>
+            <form id="comments-form" class="clearfix" action="/home/ArticleComments" method="post">
+                <input type="hidden" name="articleId" value="@ArticleDetailPageModel.Article.ArticleId" />
+                <div class="comment-left">
+                    <p class="input-block">
+                        <label class="required" for="comment-name">Name:</label>
+                        <input class="valid" type="text" name="FullName" id="comment-name" value="" required>
+                    </p>
+                    <p class="input-block">
+                        <label class="required" for="comment-email">Email:</label>
+                        <input type="email" class="valid" name="EmailId" id="comment-email" value="" required>
+                    </p>
+                    <p class="input-block">
+                        <label class="required" for="comment-url">Rating:</label>
+                        <select id="comment-url" name="rating" required>
+                            <option></option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="comment-right">
+                    <p class="textarea-block">
+                        <label class="required" for="comment-message">Message:</label>
+                        <textarea rows="6" cols="88" id="comment-message" name="description" required></textarea>
+                    </p>
+                </div>
+                <div class="clear"></div>
+                <p class="comment-button">
+                    <input type="submit" id="submit-comment" value="Comment">
+                </p>
+            </form>
+            <div id="response"></div>
+        </div><!--end:respond-->
+
+    </div><!--end:left-col-->
+    <div class="sidebar" id="sidebar-a">
+        <div class="spacer">spacer</div>
+        <ul id="widget-list-a">
+            <li>
+                <aside class="widget clearfix">
+                    <div class="adv-box clearfix">
+                        @if (ArticleDetailPageModel.Ads.Count > 0)
+                        {
+                            foreach (var item in ArticleDetailPageModel.Ads)
+                            {
+                                if (item.AddSize.Title == "250 x 250")
+                                {
+                                    if (item.Type == DDWBlogger.Project.Source.Enums.eAds.Banner.ToString())
+                                    {
+                                        <a href="@item.RedirectUrl"><img class="responsive-img hover-effect" src="../../@item.Banner" alt="" /></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(@item.Banner)
+                                    }
+                                }
+                            }
+                        }
+                    </div><!--end:adv-box-->
+                </aside><!--end:widget-->
+            </li>
+            <li>
+                <aside class="widget clearfix">
+                    <h4 class="widget-title">Categories</h4>
+                    <div class="tag">
+                        @foreach (var item in ArticleDetailPageModel.Category)
+                        {
+                            <a href="/home/articlesbycategory?id=@item.CategoryId">@item.Title</a>
+                        }
+                    </div><!--end:tag-->
+                </aside><!--end:widget-->
+            </li>
+            <li>
+                <aside class="widget clearfix">
+                    <h4 class="widget-title">Recent Articles</h4>
+                    <ul>
+                        @if (ArticleDetailPageModel.RelatedArticle != null && ArticleDetailPageModel.RelatedArticle.Count > 0)
+                        {
+                            foreach (var item in ArticleDetailPageModel.RelatedArticle)
+                            {
+                                <li><a href="/home/articledetail?id=@item.ArticleId">@item.Title</a></li>
+                            }
+                        }
+                    </ul>
+                </aside><!--end:widget-->
+            </li>
+            <li>
+                <aside class="widget clearfix">
+                    <h4 class="widget-title">Gallery</h4>
+                    <ul class="gallery clearfix">
+                        @{
+                            int a = 1;
+                            foreach (var item in ArticleDetailPageModel.GalleryBanners)
+                            {
+                                if (a == 1)
+                                {
+                                    <li>
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 2)
+                                {
+                                    <li class="last">
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 3)
+                                {
+                                    <li>
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 4)
+                                {
+                                    <li class="last">
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                a = a + 1;
+                            }
+                        }
+                    </ul>
+                </aside><!--end:widget-->
+            </li>
+        </ul><!--widget-list-a-->
+    </div><!--sidebar-a-->
+</div><!--wrapper-->

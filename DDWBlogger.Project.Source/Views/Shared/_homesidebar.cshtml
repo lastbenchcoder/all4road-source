@@ -1,0 +1,163 @@
+﻿@model  DDWBlogger.Project.Source.ViewModel.HomePageIndexModel
+
+<div class="sidebar" id="sidebar-a">
+    <div class="spacer">spacer</div>
+    <ul id="widget-list-a">
+        @if (Model != null)
+        {
+            if (Model.ArticleCategory1!=null && Model.ArticleCategory1.Count > 0)
+            {
+                foreach (var item in Model.ArticleCategory1)
+                {
+                    <li>
+                        <aside class="widget clearfix">
+                            <h4 class="widget-title"><a href="#">@item.SubCategory.Title.ToUpper()</a></h4>
+                            <article class="entry-box clearfix">
+                                <div class="article-thumb">
+                                    <a href="/home/articledetail?id=@item.ArticleId" class="hover-effect link-icon">
+                                        <img class="responsive-img" src="../../@item.FeaturedBanner" alt="" height="160" width="242" />
+                                    </a>
+                                </div><!--article-thumb-->
+                                <div class="entry-content">
+                                    <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="/home/articlesbysubcategory?id=@item.SubCategoryId">@item.SubCategory.Title</a>
+                                    <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@item.DateCreated.ToString("D")</span>
+                                    <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="#">@item.Administrator.FirstName @item.Administrator.LastName</a><h3 class="entry-title"><a href="#">@item.Title</a></h3>
+                                    <p>
+                                        @if (item.Description.Length > 100)
+                                        {
+                                        <p>@Html.Raw(item.Description.Substring(0, 100))</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@Html.Raw(item.Description)</p>
+                                        }
+                                        </p>
+
+                                    </div><!--end:entry_content-->
+                                </article><!--end:entry-box-->
+                            </aside><!--end:widget-->
+                        </li>
+                }
+            }
+        }
+        <li>
+            <aside class="widget clearfix">
+                <div class="adv-box clearfix">
+                    @if (Model.HomePage != null)
+                    {
+                        if (Model.HomePage.Display_250_250 == 1)
+                        {
+                            if (Model.Ads.Count > 0)
+                            {
+                                foreach (var item in Model.Ads)
+                                {
+                                    if (item.AddSize.Title == "250 x 250")
+                                    {
+                                        if (item.Type == DDWBlogger.Project.Source.Enums.eAds.Banner.ToString())
+                                        {
+                                            <a href="@item.RedirectUrl"><img class="responsive-img hover-effect" src="../../@item.Banner" alt="" /></a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(@item.Banner)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </aside>
+        </li>
+    </ul>
+</div>
+<div class="sidebar" id="sidebar-b">
+    <div class="spacer">spacer</div>
+    <ul id="widget-list-b">
+        @if (Model != null)
+        {
+            if (Model.ArticleCategory2 != null && Model.ArticleCategory2.Count > 0)
+            {
+                foreach (var item in Model.ArticleCategory2)
+                {
+                    <li>
+                        <aside class="widget clearfix">
+                            <h4 class="widget-title"><a href="#">@item.SubCategory.Title.ToUpper()</a></h4>
+                            <article class="entry-box clearfix">
+                                <div class="article-thumb">
+                                    <a href="#" class="hover-effect link-icon">
+                                        <img class="responsive-img" src="../../@item.FeaturedBanner" alt="" height="160" width="242" />
+                                    </a>
+                                </div><!--article-thumb-->
+                                <div class="entry-content">
+                                    <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="/home/articlesbysubcategory?id=@item.SubCategoryId">@item.SubCategory.Title</a>
+                                    <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@item.DateCreated.ToString("D")</span>
+                                    <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="#">@item.Administrator.FirstName @item.Administrator.LastName</a><h3 class="entry-title"><a href="/home/articledetail?id=@item.ArticleId">@item.Title</a></h3>
+                                        @if (item.Description.Length > 100)
+                                        {
+                                        <p>@Html.Raw(item.Description.Substring(0, 100))</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@Html.Raw(item.Description)</p>
+                                        }
+                                    </div><!--end:entry_content-->
+                                </article><!--end:entry-box-->
+                            </aside><!--end:widget-->
+                        </li>
+                }
+            }
+        }
+
+        <li>
+            <aside class="widget clearfix">
+                <h4 class="widget-title">Gallery</h4>
+                <ul class="gallery clearfix">
+                    @if (Model != null)
+                    {
+                        if (Model.ArticleCategory2 != null && Model.ArticleCategory2.Count > 0)
+                        {
+                            int a = 1;
+                            foreach (var item in Model.GalleryBanners)
+                            {
+                                if (a == 1)
+                                {
+                                    <li>
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 2)
+                                {
+                                    <li class="last">
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 3)
+                                {
+                                    <li>
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 4)
+                                {
+                                    <li class="last">
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                a = a + 1;
+                            }
+                        }
+                    }
+                </ul>
+            </aside>
+        </li>
+    </ul>
+</div>

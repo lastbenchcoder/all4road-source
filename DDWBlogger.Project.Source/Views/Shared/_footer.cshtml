@@ -1,0 +1,85 @@
+﻿@model DDWBlogger.Project.Source.ViewModel.HomePageModel
+<footer id="footer">
+    <div class="separator"></div>
+    <div class="footer-top">
+        <div class="wrapper clearfix">
+            <aside class="footer-aside" id="sidebar-1">
+                @if (Model.HomePage != null)
+                {
+                    if (Model.HomePage.Logo != "")
+                    {
+                        <a class="footer-logo" href="/"><img src="../../@Model.HomePage.Logo" alt="logo"></a>
+                    }
+                    else
+                    {
+                        <a class="footer-logo" href="/"><img src="../../content/frontend/placeholders/logo.png" alt="logo"></a>
+                    }
+                }
+                else
+                {
+                    <a class="footer-logo" href="/"><img src="../../content/frontend/placeholders/logo.png" alt="logo"></a>
+                }
+            </aside><!--footer-aside-->
+            <aside class="footer-aside" id="sidebar-2">
+                <h5 class="widget-title">Follow us</h5>
+                @if (Model.HomePage != null)
+                {
+                    <ul class="social-links clearfix">
+                        <li class="facebook-icon">
+                            <a target="_blank" title="Facebook" class="facebook" href="@Model.HomePage.Facebook">Facebook</a>
+                            <img class="responsive-img" src="../../content/frontend/images/icons/facebook.png" alt="" />
+                        </li>
+                        <li class="twitter-icon">
+                            <a target="_blank" title="Twitter" class="twitter" href="@Model.HomePage.Twitter">Twitter</a>
+                            <img class="responsive-img" src="../../content/frontend/images/icons/twitter.png" alt="" />
+                        </li>
+                        <li class="google-icon">
+                            <a target="_blank" title="Google+" class="google" href="@Model.HomePage.GooglePlus">Google</a>
+                            <img class="responsive-img" src="../../content/frontend/images/icons/google.png" alt="" />
+                        </li>
+                        <li class="pintrest-icon">
+                            <a target="_blank" title="Pintrest" class="pintrest" href="@Model.HomePage.Pintrest">Pintrest</a>
+                            <img class="responsive-img" src="../../content/frontend/images/icons/pintrest.png" alt="" />
+                        </li>
+                        <li class="youtube-icon">
+                            <a target="_blank" title="Youtube" class="youtube" href="@Model.HomePage.Youtube">Youtube</a>
+                            <img class="responsive-img" src="../../content/frontend/images/icons/youtube.png" alt="" />
+                        </li>
+                    </ul><!--end:social-links-->
+                }
+            </aside><!--footer-aside-->
+            <aside class="footer-aside last" id="sidebar-3">
+                <h5 class="widget-title">Join our mailing list</h5>
+                <div class="news-letter clearfix">
+                    <form class="newsletter-form" method="post" action="https://upsidethemes.net/demo/great-news/html/style-1/processNewsletterForm.php">
+                        <p class="input-email clearfix">
+                            <input type="text" size="40" class="email" value="Your email" name="email" onBlur="if(this.value=='')this.value=this.defaultValue;" onFocus="if(this.value==this.defaultValue)this.value='';">
+                            <input type="submit" class="submit" value="Submit">
+                        </p>
+                    </form>
+                </div><!--news-letter-->
+            </aside><!--footer-aside-->
+        </div><!--end:wrapper-->
+    </div><!--footer-top-->
+    <div class="footer-bottom">
+        <div class="wrapper clearfix">
+            @if (Model.HomePage != null)
+            {
+                <p id="copyrights">@Model.HomePage.CopyrightMesssage</p>
+            }
+            else
+            {
+                <p id="copyrights">Copyright © 2012 KopaTheme. All Rights Reserved</p>
+            }
+            <nav id="bottom-menu">
+                <ul>
+                    <li><a href="#">Sport</a></li>
+                    <li><a href="#">Entertaiment</a></li>
+                    <li><a href="#">Asia</a></li>
+                    <li><a href="#">Sport</a></li>
+                    <li><a href="elements.html">Elements</a></li>
+                </ul>
+            </nav>
+        </div><!--end:wrapper-->
+    </div><!--footer-bottom-->
+</footer>
