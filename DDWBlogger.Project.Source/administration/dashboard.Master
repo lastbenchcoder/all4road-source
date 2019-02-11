@@ -122,6 +122,17 @@
                     </li>
                     <li>
                         <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                            <span>More</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/administration/customer/subscription.aspx?redirectUrl=subscription-email-administrator-home&pageId=1234HJHJKJ*7987979">Email Subscription</a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
                             <span>ReadOnly Section</span>
                             <span class="caret"></span>
                         </a>

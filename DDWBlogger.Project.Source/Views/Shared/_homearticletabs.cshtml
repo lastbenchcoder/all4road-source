@@ -13,7 +13,7 @@
             <ul class="article-list">
                 @if (Model != null)
                 {
-                    if (Model.ArticleAndFeatures.Count > 0)
+                    if (Model.ArticleAndFeatures != null && Model.ArticleAndFeatures.Count > 0)
                     {
                         foreach (var item in Model.Article.Take(5))
                         {
@@ -31,26 +31,26 @@
                                             @if (item.Description.Length > 100)
                                             {
                                             <p>@Html.Raw(item.Description.Substring(0, 100))</p>
-                                            }
-                                            else
-                                            {
-                                                <p>@Html.Raw(item.Description)</p>
-                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>@Html.Raw(item.Description)</p>
+                                        }
                                             </p>
                                             <a class="more-link" href="#">Read more &raquo;</a>
                                         </div><!--end:entry-content-->
                                     </article><!--end:entry-item-->
                                 </li>
+                            }
                         }
                     }
-                }
             </ul>
         </div>
         <div id="tab2" class="tab-content">
             <ul class="article-list">
                 @if (Model != null)
                 {
-                    if (Model.ArticleAndFeatures.Count > 0)
+                    if (Model.ArticleAndFeatures != null && Model.ArticleAndFeatures.Count > 0)
                     {
                         foreach (var item in Model.ArticleAndFeatures)
                         {
@@ -70,27 +70,27 @@
                                                 @if (item.Article.Description.Length > 100)
                                                 {
                                                 <p>@Html.Raw(item.Article.Description.Substring(0, 100))</p>
-                                                }
-                                                else
-                                                {
-                                                    <p>@Html.Raw(item.Article.Description)</p>
-                                                }
+                                            }
+                                            else
+                                            {
+                                                <p>@Html.Raw(item.Article.Description)</p>
+                                            }
                                                 </p>
                                                 <a class="more-link" href="#">Read more &raquo;</a>
                                             </div><!--end:entry-content-->
                                         </article><!--end:entry-item-->
                                     </li>
+                                }
                             }
                         }
                     }
-                }
             </ul>
         </div><!--end:tab-content-->
         <div id="tab3" class="tab-content">
             <ul class="article-list">
                 @if (Model != null)
                 {
-                    if (Model.ArticleAndFeatures.Count > 0)
+                    if (Model.ArticleAndFeatures != null && Model.ArticleAndFeatures.Count > 0)
                     {
                         foreach (var item in Model.ArticleAndFeatures)
                         {
@@ -108,22 +108,22 @@
                                             <h3 class="entry-title"><a href="/home/articledetail?id=@item.ArticleId">@item.Article.Title</a></h3>
                                             <p>
                                                 @if (item.Article.Description.Length > 100)
-                                                    {
+                                                {
                                                 <p>@Html.Raw(item.Article.Description.Substring(0, 100))</p>
-                                                    }
-                                                    else
-                                                    {
-                                            <p>@Html.Raw(item.Article.Description)</p>
-                                                    }
+                                            }
+                                            else
+                                            {
+                                                <p>@Html.Raw(item.Article.Description)</p>
+                                            }
                                                 </p>
                                                 <a class="more-link" href="#">Read more &raquo;</a>
                                             </div><!--end:entry-content-->
                                         </article><!--end:entry-item-->
                                     </li>
+                                }
                             }
                         }
                     }
-                }
             </ul>
         </div><!--end:tab-content-->
     </div><!--tab-container-->

@@ -85,5 +85,39 @@ namespace DDWBlogger.Project.Source.Controllers
             }
             return Redirect("/home/articledetail?id=" + articleId + "&pageurl=JGJHGJH3wr2353253453hbjhbjh3j45jkh345kj34h5k");
         }
+
+        public ActionResult ArticleSearch(string s)
+        {
+            ViewBag.SearchKey = s;
+            return View();
+        }
+
+        public ActionResult Subscribe(string emailid)
+        {
+            string result = string.Empty;
+            using (var ctx = new DBContext())
+            {
+                EmailSubscriptions _subscribeUser = ctx.EmailSubscriptions.Where(m => m.EmailId == emailid).FirstOrDefault();
+                if (_subscribeUser == null)
+                {
+                    EmailSubscriptions _subscr = new EmailSubscriptions()
+                    {
+                        EmailId = emailid,
+                        StatusId = ctx.Status.Where(m => m.Title == eStatus.Active.ToString()).FirstOrDefault().StatusId,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now
+                    };
+
+                    ctx.EmailSubscriptions.Add(_subscr);
+                    ctx.SaveChanges();
+                    result = "Thank you for sbscribing our news letter! we have triggered a email to you. Please activate the subscription by clicking on the link.";
+                }
+                else
+                {
+                    result = "Oops!! Entered Email Id already exists with us.";
+                }
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

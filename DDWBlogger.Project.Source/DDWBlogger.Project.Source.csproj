@@ -138,6 +138,7 @@
     <Content Include="administration\categories\subcategory.aspx" />
     <Content Include="administration\categories\category.aspx" />
     <Content Include="administration\categories\categorydetail.aspx" />
+    <Content Include="administration\customer\subscription.aspx" />
     <Content Include="administration\dashboard.aspx" />
     <Content Include="administration\home\ads.aspx" />
     <Content Include="administration\home\adsmodify.aspx" />
@@ -1142,6 +1143,13 @@
     <Compile Include="administration\categories\categorydetail.aspx.designer.cs">
       <DependentUpon>categorydetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="administration\customer\subscription.aspx.cs">
+      <DependentUpon>subscription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\customer\subscription.aspx.designer.cs">
+      <DependentUpon>subscription.aspx</DependentUpon>
+    </Compile>
     <Compile Include="administration\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1392,6 +1400,7 @@
     <Content Include="Views\Home\ArticleDetail.cshtml" />
     <Content Include="Views\Home\ArticlesByCategory.cshtml" />
     <Content Include="Views\Home\ArticlesBySubCategory.cshtml" />
+    <Content Include="Views\Home\ArticleSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

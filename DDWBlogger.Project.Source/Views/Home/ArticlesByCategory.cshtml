@@ -41,22 +41,20 @@
                                 <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@item.DateCreated</span>
                                 <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="#">@item.Administrator.FirstName @item.Administrator.FirstName</a>
                                 <h3 class="entry-title"><a href="/home/articledetail?id=@item.ArticleId">@item.Title</a></h3>
-                                <p>
-                                    @if (item.Description.Length > 100)
-                                    {
+                                @if (item.Description.Length > 100)
+                                {
                                     <p>@Html.Raw(item.Description.Substring(0, 100))</p>
                                 }
                                 else
                                 {
                                     <p>@Html.Raw(item.Description)</p>
                                 }
-                                    </p>
-                                    <a class="more-link" href="#">Read more &raquo;</a>
-                                </div><!--end:entry-content-->
-                            </article><!--end:entry-item-->
-                        </li>
-                    }
+                                <a class="more-link" href="/home/articledetail?id=@item.ArticleId">Read more &raquo;</a>
+                            </div><!--end:entry-content-->
+                        </article><!--end:entry-item-->
+                    </li>
                 }
+            }
         </ul>
     </div><!--end:left-col-->
 </div><!--wrapper-->

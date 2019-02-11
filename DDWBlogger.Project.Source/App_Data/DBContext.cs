@@ -15,6 +15,7 @@ namespace DDWBlogger.Project.Source.App_Data
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DBContext, Migrations.Configuration>("DDWConnectionString"));
         }
+
         public DbSet<Slider> Slider { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Role> Role { get; set; }
@@ -38,6 +39,26 @@ namespace DDWBlogger.Project.Source.App_Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Slider>().ToTable("tbl_slider");
+            modelBuilder.Entity<Status>().ToTable("tbl_status");
+            modelBuilder.Entity<Role>().ToTable("tbl_role");
+            modelBuilder.Entity<SecurityQuestions>().ToTable("tbl_security_question");
+            modelBuilder.Entity<Invitation>().ToTable("tbl_invitation");
+            modelBuilder.Entity<Administrator>().ToTable("tbl_admin");
+            modelBuilder.Entity<Category>().ToTable("tbl_category");
+            modelBuilder.Entity<SubCategory>().ToTable("tbl_sub_category");
+            modelBuilder.Entity<Article>().ToTable("tbl_article");
+            modelBuilder.Entity<ArticleAndTypes>().ToTable("tbl_article_types");
+            modelBuilder.Entity<ArticleAndFeatures>().ToTable("tbl_article_features");
+            modelBuilder.Entity<ReviewComment>().ToTable("tbl_review_comment");
+            modelBuilder.Entity<ReplyReviewComment>().ToTable("tbl_reply_review_comment");
+            modelBuilder.Entity<EmailSubscriptions>().ToTable("tbl_email_subscription");
+            modelBuilder.Entity<AddSize>().ToTable("tbl_ad_size");
+            modelBuilder.Entity<Ads>().ToTable("tbl_ads");
+            modelBuilder.Entity<HomePage>().ToTable("tbl_homepage");
+            modelBuilder.Entity<Gallery>().ToTable("tbl_gallery");
+            modelBuilder.Entity<GalleryBanners>().ToTable("tbl_gallery_banner");
         }
     }
 }

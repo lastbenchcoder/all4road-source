@@ -51,9 +51,9 @@
             <aside class="footer-aside last" id="sidebar-3">
                 <h5 class="widget-title">Join our mailing list</h5>
                 <div class="news-letter clearfix">
-                    <form class="newsletter-form" method="post" action="https://upsidethemes.net/demo/great-news/html/style-1/processNewsletterForm.php">
+                    <form class="newsletter-form" method="post" action="/home/subscribe/">
                         <p class="input-email clearfix">
-                            <input type="text" size="40" class="email" value="Your email" name="email" onBlur="if(this.value=='')this.value=this.defaultValue;" onFocus="if(this.value==this.defaultValue)this.value='';">
+                            <input type="text" size="40" class="email" placeholder="Your email" required name="emailid"/>
                             <input type="submit" class="submit" value="Submit">
                         </p>
                     </form>
@@ -69,7 +69,7 @@
             }
             else
             {
-                <p id="copyrights">Copyright © 2012 KopaTheme. All Rights Reserved</p>
+                <p id="copyrights">Copyright © @DateTime.Now.Year @System.Configuration.ConfigurationSettings.AppSettings["AppName"].ToString() All Rights Reserved</p>
             }
             <nav id="bottom-menu">
                 <ul>

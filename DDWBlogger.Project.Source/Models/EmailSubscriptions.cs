@@ -11,8 +11,6 @@ namespace DDWBlogger.Project.Source.Models
         [Key]
         public int EmailSubscriptionsId { get; set; }
         [MaxLength(300)]
-        public string FullName { get; set; }
-        [MaxLength(300)]
         public string EmailId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
