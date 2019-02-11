@@ -23,7 +23,7 @@
             <h1 class="entry-title">@ArticleDetailPageModel.Article.Title</h1>
             <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="/home/articlesbysubcategory?id=@ArticleDetailPageModel.Article.SubCategoryId">@ArticleDetailPageModel.Article.SubCategory.Title</a>
             <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@ArticleDetailPageModel.Article.DateCreated.ToString("D")</span>
-            <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="/home/author?id=@item.AdministratorId">@ArticleDetailPageModel.Article.Administrator.FirstName</a>
+            <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="/home/author?id=@ArticleDetailPageModel.Article.AdministratorId">@ArticleDetailPageModel.Article.Administrator.FirstName</a>
             <img src="../../@ArticleDetailPageModel.Article.FeaturedBanner" width="100%" height="383" style="margin-top:10px;margin-bottom:10px"/>
             @Html.Raw(ArticleDetailPageModel.Article.Description)
         </section>
