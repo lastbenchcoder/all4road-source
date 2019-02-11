@@ -36,6 +36,12 @@ namespace DDWBlogger.Project.Source.Controllers
             return View();
         }
 
+        public ActionResult Author(int id)
+        {
+            ViewBag.AuthorId = id.ToString();
+            return View();
+        }
+
         [ValidateInput(false)]
         public ActionResult ArticleComments(string articleId, string rating, string EmailId, string FullName, string likeunlike, string description)
         {

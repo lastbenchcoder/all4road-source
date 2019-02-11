@@ -32,7 +32,7 @@
                             <div class="entry-content">
                                 <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="#">@item.SubCategory.Title</a>
                                 <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@item.DateCreated</span>
-                                <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="#">@item.Administrator.FirstName @item.Administrator.FirstName</a>
+                                <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="/home/author?id=@item.AdministratorId">@item.Administrator.FirstName @item.Administrator.FirstName</a>
                                 <h3 class="entry-title"><a href="/home/articledetail?id=@item.ArticleId">@item.Title</a></h3>
                                 @if (item.Description.Length > 100)
                                 {

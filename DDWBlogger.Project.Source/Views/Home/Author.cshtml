@@ -1,0 +1,55 @@
+﻿
+@using DDWBlogger.Project.Source.Models;
+@{
+    int id = Convert.ToInt32(ViewBag.AuthorId);
+
+    Administrator Administrator = new Administrator();
+    using (var context = new DDWBlogger.Project.Source.App_Data.DBContext())
+    {
+        Administrator = context.Administrator.Include("Article").Where(m => m.AdministratorId == id).FirstOrDefault();
+    }
+    ViewBag.Title = "Author " + Administrator.FirstName + " " + Administrator.LastName;
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="wrapper clearfix">
+    <div class="left-col">
+        <div class="breadcrumb clearfix">
+            <span>You are here: </span>
+            <a href="#">Home</a>&nbsp;&raquo;&nbsp;<a href="#" class="current-page">Author</a>&nbsp;&raquo;&nbsp;
+            <a href="#" class="current-page">@Administrator.FirstName @Administrator.LastName</a>
+        </div><!--end:breadcrumb-->
+
+        <section class="about-author">
+            <h5>@Administrator.FirstName @Administrator.LastName</h5>
+            <img class="border-box responsive-img" src="placeholders/avatar/author.jpg" alt="" />
+            <div class="entry-content clearfix">
+                <strong class="author-name">@Administrator.FirstName @Administrator.LastName</strong>
+                <a href="#">@Administrator.EmailId</a>
+                <p>@Administrator.Description</p>
+            </div>
+        </section><!--end:about-author-->
+        <div id="comments">
+            <h5>@Administrator.Article.Count articles from author</h5>
+            <ol class="comments-list clearfix">
+                @foreach (var item in @Administrator.Article)
+                {
+                    <li class="comment clearfix">
+                        <article class="comment-wrap clearfix">
+                            <img class="responsive-img" src="../../@item.FeaturedBanner" alt="" width="100">
+                            <div class="comment-body">
+                                <div class="comment-meta">
+                                    <span class="author">@item.Title</span>
+                                    <span class="date">@item.DateCreated.ToString("D")</span>
+                                </div><!-- end:comment-meta -->
+                                <p>@item.Description.Substring(0, 300)<span>...</span></p>
+                            </div><!-- end:comment-body -->
+                        </article>
+                    </li>
+                }
+            </ol><!--end:comments-list-->
+            <div class="clear"></div>
+        </div><!--end:comments-->
+    </div>
+</div>
+

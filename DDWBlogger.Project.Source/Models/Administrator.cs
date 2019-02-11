@@ -39,6 +39,7 @@ namespace DDWBlogger.Project.Source.Models
         public int StatusId { get; set; }
         public int RoleId { get; set; }
 
+        public ICollection<Article> Article { get; set; }
         public Invitation Invitation { get; set; }
         public Status Status { get; set; }
         public Role Role { get; set; }

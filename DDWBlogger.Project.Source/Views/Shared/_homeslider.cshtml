@@ -20,7 +20,7 @@
                     <div id="slide-caption-@b" class="nivo-html-caption">
                         <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="/home/articlesbysubcategory?id=@item.Article.SubCategoryId">@item.Article.SubCategory.Title</a>
                         <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@item.Article.DateCreated.ToString("D")</span>
-                        <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="#">@item.Article.Administrator.FirstName &nbsp; @item.Article.Administrator.FirstName</a>
+                        <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="/home/author?id=@item.AdministratorId">@item.Article.Administrator.FirstName &nbsp; @item.Article.Administrator.FirstName</a>
                         <h1 class="slide-title"><a href="/home/articledetail?id=@item.Article.ArticleId">@item.Article.Title</a></h1>
                     </div>
                         b = b + 1;
