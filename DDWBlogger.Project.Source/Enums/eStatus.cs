@@ -7,12 +7,12 @@ namespace DDWBlogger.Project.Source.Enums
 {
     public enum eStatus
     {
-        Active,
-        InActive,
-        Draft,
-        Submitted,
-        Published,
-        Rejected,
-        Completed
+        Active = 1,
+        InActive = 2,
+        Draft = 3,
+        Submitted = 4,
+        Published = 5,
+        Rejected = 6,
+        Completed = 7
     }
 }

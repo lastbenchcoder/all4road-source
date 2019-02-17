@@ -1,11 +1,13 @@
-﻿using DDWBlogger.Project.Source.Models;
+﻿using DDWBlogger.Project.Source.Enums;
+using DDWBlogger.Project.Source.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+using DDWBlogger.Project.Source.Core.bal;
+using System.Web;
 
 namespace DDWBlogger.Project.Source.Helper
 {
@@ -171,6 +173,38 @@ namespace DDWBlogger.Project.Source.Helper
             + AppName + "  Admin"
             + "</div>";
             return result;
+        }
+
+        public static string ActivityMail(string type, string description, int adminId, string dateofactivity)
+        {
+            Administrator Administrator = bAdministrator.List().Where(m => m.AdministratorId == adminId).FirstOrDefault();
+            string result = File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailTemplates/admin_activity_email.html"));
+            result = result.Replace("{RequestType}", type);
+            result = result.Replace("{RequestDescription}", description);
+            result = result.Replace("{RequestDateOfActivity}", dateofactivity);
+            result = result.Replace("{RequestAdministrator}", Administrator.FirstName + " " + Administrator.LastName + "(" + Administrator.EmailId + ")");
+            return result;
+        }
+
+        public static string EmailToSend()
+        {
+            string emailIdToSend = string.Empty;
+            List<Administrator> Administrators = bAdministrator.List().Where(m => m.StatusId == Convert.ToInt32(eStatus.Active)).ToList();
+            foreach (var item in Administrators)
+            {
+                if (item.Send_Activity_Mail == 1)
+                {
+                    if (!string.IsNullOrEmpty(emailIdToSend))
+                    {
+                        emailIdToSend = emailIdToSend + "," + item.EmailId;
+                    }
+                    else
+                    {
+                        emailIdToSend = item.EmailId;
+                    }
+                }
+            }
+            return emailIdToSend;
         }
     }
 }

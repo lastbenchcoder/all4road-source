@@ -25,7 +25,7 @@ namespace DDWBlogger.Project.Source.administration.article
                         lblProductTitle.Text = ReviewComment.Article.Title;
                         lblUserDetail.Text = ReviewComment.EmailId + "(" + ReviewComment.FullName + ")";
                         lblBcTitle.Text = ReviewComment.Article.Title;
-                        lblDescription.Text = ReviewComment.Article.Description;
+                        lblDescription.Text = ReviewComment.CommentDescription;
                         imgProduct.ImageUrl = "../../" + ReviewComment.Article.FeaturedBanner;
                         hdnCommentId.Value = ReviewComment.ReviewCommentId.ToString();
                         lblDate.Text = ReviewComment.DateCreated.ToString("D");

@@ -13,6 +13,7 @@ namespace DDWBlogger.Project.Source.ViewModel
         public HomePage HomePage { get; set; }
         public List<Category> Category { get; set; }
         public List<Ads> Ads { get; set; }
+        public List<Menus> Menus { get; set; }
     }
 
     public class HomePageIndexModel
@@ -37,6 +38,13 @@ namespace DDWBlogger.Project.Source.ViewModel
         public List<Category> Category { get; set; }
     }
 
+    public class SideBar
+    {
+        public List<Ads> Ads { get; set; }
+        public List<GalleryBanners> GalleryBanners { get; set; }
+        public List<Category> Category { get; set; }
+    }
+
     public class FEHomePage
     {
         public HomePageModel GetHomePageDetail()
@@ -50,6 +58,7 @@ namespace DDWBlogger.Project.Source.ViewModel
                     HomePageModel.HomePage = context.HomePage.FirstOrDefault();
                     HomePageModel.Category = context.Category.Include("SubCategory").Where(m => m.StatusId == StatusId).ToList();
                     HomePageModel.Ads = context.Ads.Include("AddSize").ToList();
+                    HomePageModel.Menus = context.Menus.ToList();
                     return HomePageModel;
                 }
             }
@@ -116,6 +125,26 @@ namespace DDWBlogger.Project.Source.ViewModel
             {
                 return ArticleDetailPageModel;
             }            
+        }
+
+        public SideBar GetSideBarDetail()
+        {
+            SideBar SideBarModel = new SideBar();
+            try
+            {
+                using (var context = new DBContext())
+                {
+                    int StatusId = context.Status.Where(m => m.Title == eStatus.Active.ToString()).FirstOrDefault().StatusId;
+                    SideBarModel.Ads = context.Ads.Include("AddSize").ToList();
+                    SideBarModel.GalleryBanners = context.GalleryBanners.Include("Gallery").Take(4).ToList();
+                    SideBarModel.Category = context.Category.Include("SubCategory").Where(m => m.StatusId == StatusId).ToList();
+                    return SideBarModel;
+                }
+            }
+            catch
+            {
+                return SideBarModel;
+            }
         }
     }
 }

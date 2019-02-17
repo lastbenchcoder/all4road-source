@@ -259,6 +259,15 @@
                                 <li>
                                     <a href="/administration/pages/homepage.aspx?redirectUrl=articles-administrator-home&pageId=1234HJHJKJ*7987979">Home Page</a>
                                 </li>
+                                  <li>
+                                    <a href="/administration/pages/contact.aspx?redirectUrl=articles-administrator-home&pageId=1234HJHJKJ*7987979">Contact Us</a>
+                                </li>
+                                 <li>
+                                    <a href="/administration/pages/allpages.aspx?redirectUrl=articles-administrator-home&pageId=1234HJHJKJ*7987979">Pages</a>
+                                </li>
+                                <li>
+                                    <a href="/administration/pages/menus.aspx?redirectUrl=articles-administrator-home&pageId=1234HJHJKJ*7987979">Menu</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

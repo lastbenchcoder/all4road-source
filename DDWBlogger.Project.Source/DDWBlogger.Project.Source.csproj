@@ -148,7 +148,15 @@
     <Content Include="administration\home\galleryphotos.aspx" />
     <Content Include="administration\home\slider.aspx" />
     <Content Include="administration\home\slidermodify.aspx" />
+    <Content Include="administration\pages\allpages.aspx" />
+    <Content Include="administration\pages\contact.aspx" />
+    <Content Include="administration\pages\contactdetail.aspx" />
     <Content Include="administration\pages\homepage.aspx" />
+    <Content Include="administration\pages\menudetail.aspx" />
+    <Content Include="administration\pages\menus.aspx" />
+    <Content Include="administration\pages\newcontact.aspx" />
+    <Content Include="administration\pages\newpage.aspx" />
+    <Content Include="administration\pages\pagedetail.aspx" />
     <Content Include="administration\profile.aspx" />
     <Content Include="administration\secreadonly\adsizes.aspx" />
     <Content Include="administration\secreadonly\features.aspx" />
@@ -612,35 +620,6 @@
     <Content Include="Content\frontend\js\jquery.prettyPhoto.js" />
     <Content Include="Content\frontend\js\jquery.sticky.js" />
     <Content Include="Content\frontend\js\jquery.tweet.js" />
-    <Content Include="Content\frontend\placeholders\124x124\124x124-1.jpg" />
-    <Content Include="Content\frontend\placeholders\124x124\124x124-2.jpg" />
-    <Content Include="Content\frontend\placeholders\124x124\124x124-3.jpg" />
-    <Content Include="Content\frontend\placeholders\124x124\124x124-4.jpg" />
-    <Content Include="Content\frontend\placeholders\152x155\152x155-1.jpg" />
-    <Content Include="Content\frontend\placeholders\152x155\152x155-2.jpg" />
-    <Content Include="Content\frontend\placeholders\152x155\152x155-3.jpg" />
-    <Content Include="Content\frontend\placeholders\152x155\152x155-4.jpg" />
-    <Content Include="Content\frontend\placeholders\168x171\168x171-1.jpg" />
-    <Content Include="Content\frontend\placeholders\168x171\168x171-2.jpg" />
-    <Content Include="Content\frontend\placeholders\168x171\168x171-3.jpg" />
-    <Content Include="Content\frontend\placeholders\168x171\168x171-4.jpg" />
-    <Content Include="Content\frontend\placeholders\220x138\220x138-1.jpg" />
-    <Content Include="Content\frontend\placeholders\220x138\220x138-2.jpg" />
-    <Content Include="Content\frontend\placeholders\220x138\220x138-3.jpg" />
-    <Content Include="Content\frontend\placeholders\220x138\220x138-4.jpg" />
-    <Content Include="Content\frontend\placeholders\220x138\220x138-5.jpg" />
-    <Content Include="Content\frontend\placeholders\220x138\220x138-6.jpg" />
-    <Content Include="Content\frontend\placeholders\242x160\242x160-1.jpg" />
-    <Content Include="Content\frontend\placeholders\242x160\242x160-2.jpg" />
-    <Content Include="Content\frontend\placeholders\242x160\242x160-3.jpg" />
-    <Content Include="Content\frontend\placeholders\242x160\242x160-4.jpg" />
-    <Content Include="Content\frontend\placeholders\avatar\author.jpg" />
-    <Content Include="Content\frontend\placeholders\avatar\avatar.jpg" />
-    <Content Include="Content\frontend\placeholders\banner\250x250.png" />
-    <Content Include="Content\frontend\placeholders\logo.png" />
-    <Content Include="Content\frontend\placeholders\slider\slide-1.jpg" />
-    <Content Include="Content\frontend\placeholders\slider\slide-2.jpg" />
-    <Content Include="Content\frontend\placeholders\top-banner.jpg" />
     <Content Include="Content\frontend\style.css" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\noimage.png" />
@@ -993,7 +972,9 @@
     <Content Include="Scripts\ckeditor\skins\v2\templates.css" />
     <Content Include="Scripts\ckeditor\themes\default\theme.js" />
     <Content Include="Scripts\jquery.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="account\account.Master.cs">
@@ -1220,12 +1201,68 @@
     <Compile Include="administration\home\slidermodify.aspx.designer.cs">
       <DependentUpon>slidermodify.aspx</DependentUpon>
     </Compile>
+    <Compile Include="administration\pages\allpages.aspx.cs">
+      <DependentUpon>allpages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\allpages.aspx.designer.cs">
+      <DependentUpon>allpages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administration\pages\contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\contact.aspx.designer.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administration\pages\contactdetail.aspx.cs">
+      <DependentUpon>contactdetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\contactdetail.aspx.designer.cs">
+      <DependentUpon>contactdetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="administration\pages\homepage.aspx.cs">
       <DependentUpon>homepage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="administration\pages\homepage.aspx.designer.cs">
       <DependentUpon>homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administration\pages\menudetail.aspx.cs">
+      <DependentUpon>menudetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\menudetail.aspx.designer.cs">
+      <DependentUpon>menudetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administration\pages\menus.aspx.cs">
+      <DependentUpon>menus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\menus.aspx.designer.cs">
+      <DependentUpon>menus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administration\pages\newcontact.aspx.cs">
+      <DependentUpon>newcontact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\newcontact.aspx.designer.cs">
+      <DependentUpon>newcontact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administration\pages\newpage.aspx.cs">
+      <DependentUpon>newpage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\newpage.aspx.designer.cs">
+      <DependentUpon>newpage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="administration\pages\pagedetail.aspx.cs">
+      <DependentUpon>pagedetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administration\pages\pagedetail.aspx.designer.cs">
+      <DependentUpon>pagedetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="administration\profile.aspx.cs">
       <DependentUpon>profile.aspx</DependentUpon>
@@ -1322,8 +1359,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\bal\bAdministrator.cs" />
+    <Compile Include="Core\bal\bContactOwner.cs" />
+    <Compile Include="Core\dal\dAdministrator.cs" />
+    <Compile Include="Core\dal\dContactOwner.cs" />
     <Compile Include="Enums\eAds.cs" />
     <Compile Include="Enums\eArticleTypes.cs" />
+    <Compile Include="Enums\eMenu.cs" />
     <Compile Include="Enums\eStatus.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1332,18 +1374,24 @@
     <Compile Include="Helper\IpAddress.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddSize.cs" />
+    <Compile Include="Models\AdminActivity.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Ads.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleAndFeatures.cs" />
     <Compile Include="Models\ArticleAndTypes.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ContactOwner.cs" />
+    <Compile Include="Models\CustomerRequest.cs" />
     <Compile Include="Models\EmailSubscriptions.cs" />
+    <Compile Include="Models\EmailTracker.cs" />
     <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\GalleryBanners.cs" />
     <Compile Include="Models\HomePage.cs" />
     <Compile Include="Models\Invitation.cs" />
     <Compile Include="Helper\MailHelper.cs" />
+    <Compile Include="Models\Menus.cs" />
+    <Compile Include="Models\Pages.cs" />
     <Compile Include="Models\ReplyReviewComment.cs" />
     <Compile Include="Models\ReviewComment.cs" />
     <Compile Include="Models\Role.cs" />
@@ -1386,21 +1434,24 @@
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Shared\_homeslider.cshtml" />
     <Content Include="Views\Shared\_homearticletabs.cshtml" />
-    <Content Include="Views\Shared\_hometopsidebar.cshtml" />
     <Content Include="Views\Shared\_homesidebar.cshtml" />
-    <Content Include="Web_Prod.config">
+    <Content Include="Web_Prd.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web_Prod.Debug.config">
-      <DependentUpon>Web_Prod.config</DependentUpon>
+    <Content Include="Web_Prd.Debug.config">
+      <DependentUpon>Web_Prd.config</DependentUpon>
     </Content>
-    <Content Include="Web_Prod.Release.config">
-      <DependentUpon>Web_Prod.config</DependentUpon>
+    <Content Include="Web_Prd.Release.config">
+      <DependentUpon>Web_Prd.config</DependentUpon>
     </Content>
     <Content Include="Views\Home\ArticleDetail.cshtml" />
     <Content Include="Views\Home\ArticlesByCategory.cshtml" />
     <Content Include="Views\Home\ArticlesBySubCategory.cshtml" />
     <Content Include="Views\Home\ArticleSearch.cshtml" />
+    <Content Include="Views\Home\Author.cshtml" />
+    <Content Include="Views\Home\Success.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\Mypages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -18,6 +18,11 @@ namespace DDWBlogger.Project.Source.Controllers
             return View();
         }
 
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
         public ActionResult ArticlesByCategory(int id)
         {
             ViewBag.CategoryId = id.ToString();
@@ -39,6 +44,12 @@ namespace DDWBlogger.Project.Source.Controllers
         public ActionResult Author(int id)
         {
             ViewBag.AuthorId = id.ToString();
+            return View();
+        }
+
+        public ActionResult Mypages(int q)
+        {
+            ViewBag.PageId = q.ToString();
             return View();
         }
 
@@ -98,6 +109,12 @@ namespace DDWBlogger.Project.Source.Controllers
             return View();
         }
 
+        public ActionResult Success(string s)
+        {
+            ViewBag.SuccessMessage = s;
+            return View();
+        }
+
         public ActionResult Subscribe(string emailid)
         {
             string result = string.Empty;
@@ -123,7 +140,30 @@ namespace DDWBlogger.Project.Source.Controllers
                     result = "Oops!! Entered Email Id already exists with us.";
                 }
             }
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Redirect("/home/Success?s=" + result);
+        }
+
+        public ActionResult CustomerRequest(CustomerRequest customerRequest)
+        {
+            string result = string.Empty;
+            using (var ctx = new DBContext())
+            {
+                CustomerRequest _customerRequest = new CustomerRequest()
+                {
+                    FullName = customerRequest.FullName,
+                    EmailId = customerRequest.EmailId,
+                    Subject = customerRequest.Subject,
+                    Description = customerRequest.Description,
+                    IpAddress = IpAddress.GetLocalIPAddress(),
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now
+                };
+
+                ctx.CustomerRequest.Add(_customerRequest);
+                ctx.SaveChanges();
+                result = "Thank you for submitting your request we will work on your request.";
+            }
+            return Redirect("/home/Success?s=" + result);
         }
     }
 }

@@ -16,11 +16,14 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <a href="/administration/store.aspx?redirecturl=admin-store-rachna-teracotta">Content</a>
+                    <a href="#">Content</a>
                     <i class="fa fa-angle-right"></i>
                 </li>
+                 <li>
+                    <a href="#">Pages & Detail</a>
+                </li>
                 <li>
-                    <a href="/administration/store.aspx?redirecturl=admin-store-rachna-teracotta">Home Page Data</a>
+                    <a href="#">Home Page Data</a>
                 </li>
             </ul>
             <div class="close-bread">

@@ -12,12 +12,12 @@
                     }
                     else
                     {
-                        <a class="footer-logo" href="/"><img src="../../content/frontend/placeholders/logo.png" alt="logo"></a>
+                        <a class="footer-logo" href="/"><img src="../../content/logo.png" alt="logo"></a>
                     }
                 }
                 else
                 {
-                    <a class="footer-logo" href="/"><img src="../../content/frontend/placeholders/logo.png" alt="logo"></a>
+                    <a class="footer-logo" href="/"><img src="../../content/logo.png" alt="logo"></a>
                 }
             </aside><!--footer-aside-->
             <aside class="footer-aside" id="sidebar-2">
@@ -53,7 +53,7 @@
                 <div class="news-letter clearfix">
                     <form class="newsletter-form" method="post" action="/home/subscribe/">
                         <p class="input-email clearfix">
-                            <input type="text" size="40" class="email" placeholder="Your email" required name="emailid"/>
+                            <input type="text" size="40" class="email" placeholder="Your email" required name="emailid" />
                             <input type="submit" class="submit" value="Submit">
                         </p>
                     </form>
@@ -73,11 +73,17 @@
             }
             <nav id="bottom-menu">
                 <ul>
-                    <li><a href="#">Sport</a></li>
-                    <li><a href="#">Entertaiment</a></li>
-                    <li><a href="#">Asia</a></li>
-                    <li><a href="#">Sport</a></li>
-                    <li><a href="elements.html">Elements</a></li>
+                    @foreach (var item in Model.Menus.Where(m => m.MenuType == DDWBlogger.Project.Source.Enums.eMenu.Footer.ToString()).ToList())
+                    {
+                        if (item.Custom_Url == "PageId")
+                        {
+                            <li><a href="/home/mypages?q=@item.Page_Id&redirect-url=selectedpage" style="cursor:pointer">Sport</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@item.Custom_Url" style="cursor:pointer">@item.Title</a></li>
+                        }
+                    }
                 </ul>
             </nav>
         </div><!--end:wrapper-->

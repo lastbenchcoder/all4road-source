@@ -1,0 +1,176 @@
+﻿
+@{
+    DDWBlogger.Project.Source.ViewModel.SideBar SideBar = new DDWBlogger.Project.Source.ViewModel.SideBar();
+    DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
+    SideBar = FEHomePage.GetSideBarDetail();
+    int canSubmitRequest = 1;
+    DDWBlogger.Project.Source.Models.ContactOwner contactOwner = new DDWBlogger.Project.Source.Models.ContactOwner();
+    contactOwner = DDWBlogger.Project.Source.Core.bal.bContactOwner.List().Where(m => m.StatusId == Convert.ToInt32(DDWBlogger.Project.Source.Enums.eStatus.Active)).FirstOrDefault();
+
+    if (contactOwner != null)
+    {
+        if (contactOwner.Contact_Query_Submission == "N")
+        {
+            canSubmitRequest = 0;
+        }
+    }
+
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="wrapper clearfix">
+    <div class="left-col">
+        <div class="breadcrumb clearfix">
+            <span>You are here: </span>
+            <a href="#">Home</a>&nbsp;&raquo;&nbsp;<a href="#" class="current-page">Contact</a>
+        </div><!--end:breadcrumb-->
+        <section class="entry-box">
+            @if (contactOwner != null)
+            {
+                <h2>Locate us on Google Map</h2>
+                <iframe class="google-map" width="100%" scrolling="no" height="370" frameborder="0" marginheight="0" marginwidth="0" src="@contactOwner.Contact_GoogleMapURL"></iframe>
+                <br>
+                <h2>@contactOwner.Contact_Title</h2>
+                <p>@contactOwner.Contact_Description</p>
+                if (canSubmitRequest == 1)
+                {
+                    <div id="respond">
+                        <h3>Leave a message</h3>
+                        <form id="comments-form" class="clearfix" action="/home/CustomerRequest/" method="post">
+                            <div class="comment-left">
+                                <p class="input-block">
+                                    <label class="required" for="comment-name">Name:</label>
+                                    <input class="valid" type="text" name="FullName" id="comment-name" value="" required>
+                                </p>
+                                <p class="input-block">
+                                    <label class="required" for="comment-email">Email:</label>
+                                    <input type="email" class="valid" name="EmailId" id="comment-email" value="" required>
+                                </p>
+                                <p class="input-block">
+                                    <label class="required" for="comment-url">Subject:</label>
+                                    <input type="text" id="comment-url" value="" class="valid" name="Subject" required>
+                                </p>
+                            </div>
+                            <div class="comment-right">
+                                <p class="textarea-block">
+                                    <label class="required" for="comment-message">Message:</label>
+                                    <textarea rows="6" cols="88" id="comment-message" name="Description" required></textarea>
+                                </p>
+                            </div>
+                            <div class="clear"></div>
+                            <p class="comment-button">
+                                <input type="submit" id="submit-comment" value="Submit">
+                            </p>
+                        </form>
+                        <div id="response"></div>
+                    </div><!--end:respond-->
+                }
+            }
+            else
+            {
+                <p style="color:red">Oops!! No Contact dtail found. Reach us on :<a href="mailto:admin@all4road.com">admin@all4road.com</a></p>
+            }
+        </section><!--end:entry-box-->
+    </div><!--end:left-col-->
+    <div class="sidebar" id="sidebar-a">
+        <div class="spacer">spacer</div>
+        <ul id="widget-list-a">
+            @if (contactOwner != null)
+            {
+                <li>
+                    <aside class="widget clearfix">
+                        <h4 class="widget-title">Contact Information</h4>
+                        <div class="textwidget">
+                            <h5>@contactOwner.Contact_Address</h5>
+                            <p class="free-phone">Free phone:<span>+@contactOwner.Contact_Phone</span></p>
+                            <p class="tele-phone">Telephone:<span>+@contactOwner.Contact_Phone</span></p>
+                            <p class="contact-fax">Fax: <span>+@contactOwner.Contact_Fax</span></p>
+                            <p class="contact-email">Email: @contactOwner.Contact_EmailId</p>
+                        </div>
+                    </aside><!--end:widget-->
+                </li>
+            }
+            <li>
+                <aside class="widget clearfix">
+                    <div class="adv-box clearfix">
+                        @if (SideBar.Ads.Count > 0)
+                        {
+                            foreach (var item in SideBar.Ads)
+                            {
+                                if (item.AddSize.Title == "250 x 250")
+                                {
+                                    if (item.Type == DDWBlogger.Project.Source.Enums.eAds.Banner.ToString())
+                                    {
+                                        <a href="@item.RedirectUrl"><img class="responsive-img hover-effect" src="../../@item.Banner" alt="" /></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(@item.Banner)
+                                    }
+                                }
+                            }
+                        }
+                    </div><!--end:adv-box-->
+                </aside><!--end:widget-->
+            </li>
+            <li>
+                <aside class="widget clearfix">
+                    <h4 class="widget-title">Categories</h4>
+                    <div class="tag">
+                        @foreach (var item in SideBar.Category)
+                        {
+                            <a href="/home/articlesbycategory?id=@item.CategoryId">@item.Title</a>
+                        }
+                    </div><!--end:tag-->
+                </aside><!--end:widget-->
+            </li>
+            <li>
+                <aside class="widget clearfix">
+                    <h4 class="widget-title">Gallery</h4>
+                    <ul class="gallery clearfix">
+                        @{
+                            int a = 1;
+                            foreach (var item in SideBar.GalleryBanners)
+                            {
+                                if (a == 1)
+                                {
+                                    <li>
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 2)
+                                {
+                                    <li class="last">
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 3)
+                                {
+                                    <li>
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                else if (a == 4)
+                                {
+                                    <li class="last">
+                                        <a class="gallery-img" href="../../@item.Gallery_Banner_Photo" rel="prettyPhoto">
+                                            <img class="responsive-img scale-hover" src="../../@item.Gallery_Banner_Photo" alt="" height="124" width="123" />
+                                        </a>
+                                    </li>
+                                }
+                                a = a + 1;
+                            }
+                        }
+                    </ul>
+                </aside><!--end:widget-->
+            </li>
+        </ul><!--widget-list-a-->
+    </div><!--sidebar-a-->
+</div><!--wrapper-->

@@ -3,11 +3,8 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 
     DDWBlogger.Project.Source.ViewModel.HomePageIndexModel HomePageIndexModel = new DDWBlogger.Project.Source.ViewModel.HomePageIndexModel();
-    using (var context = new DDWBlogger.Project.Source.App_Data.DBContext())
-    {
-        DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
-        HomePageIndexModel = FEHomePage.GetIndexPageDetail();
-    }
+    DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
+    HomePageIndexModel = FEHomePage.GetIndexPageDetail();
 }
 <div class="wrapper clearfix">
     <div class="primary">
@@ -17,7 +14,6 @@
         }
     </div>
     <div class="secondary clearfix">
-        @{ Html.RenderPartial("_hometopsidebar", HomePageIndexModel.ArticleAndFeatures);}
-        @{ Html.RenderPartial("_homesidebar", HomePageIndexModel);}       
+        @{ Html.RenderPartial("_homesidebar", HomePageIndexModel);}
     </div>
 </div>

@@ -6,6 +6,7 @@
             <li><a href="#tab1">Popular</a></li>
             <li><a href="#tab2">Top</a></li>
             <li><a href="#tab3">Editor Choice</a></li>
+            <li><a href="#tab4">Featured</a></li>
         </ul><!--end:tabs-->
     </div><!--end:list-container-->
     <div class="tab-container">
@@ -95,6 +96,46 @@
                         foreach (var item in Model.ArticleAndFeatures)
                         {
                             if (item.ArticleAndTypes.Type == DDWBlogger.Project.Source.Enums.eArticleTypes.EditorChoice.ToString())
+                            {
+                                <li>
+                                    <article class="entry-item clearfix">
+                                        <div class="video-thumb">
+                                            <img class="responsive-img" src="@item.Article.FeaturedBanner" alt="" height="220" width="138" />
+                                        </div><!--video-thumb-->
+                                        <div class="entry-content">
+                                            <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="/home/articlesbysubcategory?id=@item.Article.SubCategoryId">@item.Article.SubCategory.Title</a>
+                                            <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@item.Article.DateCreated</span>
+                                            <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="/home/author?id=@item.AdministratorId">@item.Article.Administrator.FirstName @item.Article.Administrator.FirstName</a>
+                                            <h3 class="entry-title"><a href="/home/articledetail?id=@item.ArticleId">@item.Article.Title</a></h3>
+                                            <p>
+                                                @if (item.Article.Description.Length > 100)
+                                                {
+                                                <p>@Html.Raw(item.Article.Description.Substring(0, 100))</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@Html.Raw(item.Article.Description)</p>
+                                            }
+                                                </p>
+                                                <a class="more-link" href="#">Read more &raquo;</a>
+                                            </div><!--end:entry-content-->
+                                        </article><!--end:entry-item-->
+                                    </li>
+                                }
+                            }
+                        }
+                    }
+            </ul>
+        </div><!--end:tab-content-->
+        <div id="tab4" class="tab-content">
+            <ul class="article-list">
+                @if (Model != null)
+                {
+                    if (Model.ArticleAndFeatures != null && Model.ArticleAndFeatures.Count > 0)
+                    {
+                        foreach (var item in Model.ArticleAndFeatures)
+                        {
+                            if (item.ArticleAndTypes.Type == DDWBlogger.Project.Source.Enums.eArticleTypes.Featured.ToString())
                             {
                                 <li>
                                     <article class="entry-item clearfix">

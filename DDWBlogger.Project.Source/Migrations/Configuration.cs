@@ -1,6 +1,7 @@
 namespace DDWBlogger.Project.Source.Migrations
 {
     using App_Data;
+    using DDWBlogger.Project.Source.Enums;
     using Models;
     using System;
     using System.Data.Entity;
@@ -549,6 +550,21 @@ namespace DDWBlogger.Project.Source.Migrations
                         }
                 );
 
+                context.SaveChanges();
+                #endregion
+                #region Status
+                context.Pages.AddOrUpdate(
+                   p => new { p.Title },
+                        new Pages
+                        {
+                            Title = "Default",
+                            Description = "Default page used for custom url",
+                            StatusId = Convert.ToInt32(eStatus.Active),
+                            AdministratorId = context.Administrator.Where(m => m.EmailId == "admin@all4road.com").FirstOrDefault().AdministratorId,
+                            DateCreated = DateTime.Now,
+                            DateUpdated = DateTime.Now
+                        }
+                );
                 context.SaveChanges();
                 #endregion
             }

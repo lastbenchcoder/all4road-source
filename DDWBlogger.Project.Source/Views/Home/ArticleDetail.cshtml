@@ -1,11 +1,8 @@
 ﻿@{
     int id = Convert.ToInt32(ViewBag.Id);
     DDWBlogger.Project.Source.ViewModel.ArticleDetailPageModel ArticleDetailPageModel = new DDWBlogger.Project.Source.ViewModel.ArticleDetailPageModel();
-    using (var context = new DDWBlogger.Project.Source.App_Data.DBContext())
-    {
-        DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
-        ArticleDetailPageModel = FEHomePage.GetArticleDetailPageDetail(id);
-    }
+    DDWBlogger.Project.Source.ViewModel.FEHomePage FEHomePage = new DDWBlogger.Project.Source.ViewModel.FEHomePage();
+    ArticleDetailPageModel = FEHomePage.GetArticleDetailPageDetail(id);
 
     ViewBag.Title = ArticleDetailPageModel.Article.Title;
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -18,13 +15,13 @@
             <a href="#">Home</a>&nbsp;&raquo;&nbsp;
             <a href="/home/articlesbysubcategory?id=@ArticleDetailPageModel.Article.SubCategoryId" class="current-page">@ArticleDetailPageModel.Article.SubCategory.Title</a>
             &nbsp;&raquo;&nbsp;<span>@ArticleDetailPageModel.Article.Title</span>
-        </div><!--end:breadcrumb-->       
+        </div><!--end:breadcrumb-->
         <section class="entry-box clearfix">
             <h1 class="entry-title">@ArticleDetailPageModel.Article.Title</h1>
             <span class="entry-meta">in:&nbsp;</span><a class="meta-data" href="/home/articlesbysubcategory?id=@ArticleDetailPageModel.Article.SubCategoryId">@ArticleDetailPageModel.Article.SubCategory.Title</a>
             <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="meta-data">@ArticleDetailPageModel.Article.DateCreated.ToString("D")</span>
             <span class="entry-meta">&nbsp;&nbsp;|&nbsp;&nbsp;by:&nbsp;</span><a class="meta-data" href="/home/author?id=@ArticleDetailPageModel.Article.AdministratorId">@ArticleDetailPageModel.Article.Administrator.FirstName</a>
-            <img src="../../@ArticleDetailPageModel.Article.FeaturedBanner" width="100%" height="383" style="margin-top:10px;margin-bottom:10px"/>
+            <img src="../../@ArticleDetailPageModel.Article.FeaturedBanner" width="100%" height="383" style="margin-top:10px;margin-bottom:10px" />
             @Html.Raw(ArticleDetailPageModel.Article.Description)
         </section>
         <!--end:entry-box-->
@@ -113,7 +110,7 @@
                                         </li>
                                     }
                                 </ul><!--end:children-->
-                            }
+                            }                            
                         </li>
                     }
                 }

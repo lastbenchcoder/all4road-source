@@ -5110,7 +5110,6 @@ label, input, button, select, textarea {
   padding-left: 35px;
   padding-bottom: 2px;
   line-height: 20px;
-  background: url("../img/logo.png") no-repeat;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
   #navigation #brand {

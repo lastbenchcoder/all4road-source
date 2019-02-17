@@ -72,9 +72,9 @@ jQuery(document).ready(function(){
 		}
 	if(view_port_w > 1000){
 		jQuery.backstretch([
-			  "../../content/frontend/placeholders/logo.png",
-			  "../../content/frontend/placeholders/logo.png",
-			   "../../content/frontend/placeholders/logo.png"
+			  "../../content/logo.png",
+			  "../../content/logo.png",
+			   "../../content/logo.png"
 			], {
 				fade: 750,
 				duration: 4000

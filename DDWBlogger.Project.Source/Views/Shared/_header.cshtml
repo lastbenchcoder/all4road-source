@@ -24,8 +24,17 @@
                         }
                     }
                 }
-                <li><a href="news.html">About Us</a></li>
-                <li><a href="news.html">Contact Us</a></li>
+                @foreach (var item in Model.Menus.Where(m => m.MenuType == DDWBlogger.Project.Source.Enums.eMenu.Header.ToString()).ToList())
+                {
+                    if (item.Custom_Url == "PageId")
+                    {
+                        <li><a href="/home/mypages?q=@item.Page_Id&redirect-url=selectedpage" style="cursor:pointer">Sport</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@item.Custom_Url" style="cursor:pointer">@item.Title</a></li>
+                    }
+                }
             </ul>
         </nav><!--end:top-nav-->
     </div><!--wrapper-->
